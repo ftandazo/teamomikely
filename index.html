@@ -1,42 +1,64 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para Kely 💗</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="overlay">
-    <div class="card">
-      <h1 class="titulo">Para Kely 💗</h1>
-      <p class="subtitulo">Un rincóncito hecho con amor</p>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-      <div class="contador-box">
-        <h2>Tiempo juntos</h2>
-        <p id="contador">Cargando contador...</p>
-      </div>
+body {
+  min-height: 100vh;
+  padding: 24px;
+  font-family: Georgia, serif;
+  background: linear-gradient(180deg, #f7eef5 0%, #f2e4ee 100%);
+  color: #4b2e39;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-      <div class="poema-box">
-        <h2>Poema del día</h2>
-        <p id="poema">Cargando poema...</p>
-      </div>
+.card {
+  width: 100%;
+  max-width: 720px;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 26px;
+  padding: 28px;
+  box-shadow: 0 10px 35px rgba(120, 80, 100, 0.15);
+}
 
-      <div class="mensaje-box">
-        <h2>Mensaje especial</h2>
-        <p id="mensaje-especial">Hoy solo quería recordarte que me encantas demasiado.</p>
-      </div>
+.titulo {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+}
 
-      <div class="video-box">
-        <h2>Video bonito</h2>
-        <video controls width="100%">
-          <source src="K.mp4" type="video/mp4" />
-          Tu navegador no soporta video.
-        </video>
-      </div>
-    </div>
-  </div>
+.subtitulo {
+  text-align: center;
+  margin-bottom: 24px;
+  font-style: italic;
+  opacity: 0.85;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+.bloque {
+  margin-bottom: 18px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.55);
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+#poema, #mensaje-especial, #contador {
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.gif-romantico {
+  width: 100%;
+  border-radius: 18px;
+  display: block;
+  margin-top: 10px;
+}
