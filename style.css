@@ -41,3 +41,13 @@ transform:translateY(0);
 }
 
 }
+.contador{
+
+margin-top:40px;
+font-size:22px;
+color:#2e5f82;
+opacity:0;
+animation: aparecer 2.5s forwards;
+animation-delay:1.2s;
+
+}
