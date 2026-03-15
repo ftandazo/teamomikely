@@ -5,31 +5,25 @@
 }
 
 body {
+  min-height: 100vh;
+  padding: 24px;
   font-family: Georgia, serif;
-  min-height: 100vh;
-  background: url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1200&q=80") no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-}
-
-.overlay {
-  min-height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
+  background: linear-gradient(180deg, #f7eef5 0%, #f2e4ee 100%);
+  color: #4b2e39;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 24px;
 }
 
 .card {
   width: 100%;
-  max-width: 700px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
+  max-width: 720px;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 26px;
   padding: 28px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  animation: flotar 5s ease-in-out infinite;
+  box-shadow: 0 10px 35px rgba(120, 80, 100, 0.15);
 }
 
 .titulo {
@@ -40,19 +34,16 @@ body {
 
 .subtitulo {
   text-align: center;
-  margin-bottom: 28px;
-  opacity: 0.9;
+  margin-bottom: 24px;
   font-style: italic;
+  opacity: 0.85;
 }
 
-.contador-box,
-.poema-box,
-.mensaje-box,
-.video-box {
-  margin-bottom: 24px;
+.bloque {
+  margin-bottom: 18px;
   padding: 18px;
-  background: rgba(255,255,255,0.1);
   border-radius: 18px;
+  background: rgba(255,255,255,0.55);
 }
 
 h2 {
@@ -60,23 +51,14 @@ h2 {
   font-size: 1.2rem;
 }
 
-#contador {
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-#poema,
-#mensaje-especial {
-  font-size: 1.08rem;
+#poema, #mensaje-especial, #contador {
   line-height: 1.7;
+  font-size: 1.05rem;
 }
 
-video {
-  border-radius: 14px;
-}
-
-@keyframes flotar {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
+.gif-romantico {
+  width: 100%;
+  border-radius: 18px;
+  display: block;
+  margin-top: 10px;
 }
