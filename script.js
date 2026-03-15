@@ -1,4 +1,4 @@
-const HUGGINGFACE_API_KEY = "AQUI_VA_TU_TOKEN";
+const HUGGINGFACE_API_KEY = "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";
 
 async function generarPoema() {
   const poemaEl = document.getElementById("poema");
