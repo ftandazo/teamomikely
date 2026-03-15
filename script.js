@@ -1,58 +1,20 @@
-const HUGGINGFACE_API_KEY = "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";
+const fechaInicio = new Date("2026-03-01T00:00:00");
 
-async function generarPoema() {
-  const poemaEl = document.getElementById("poema");
+function actualizarContador() {
+  const ahora = new Date();
+  const diferencia = ahora - fechaInicio;
 
-  const hoy = new Date().toLocaleDateString("es-EC", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  });
+  const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+  const segundos = Math.floor((diferencia / 1000) % 60);
 
-  const prompt = `
-Escribe un poema romántico breve y original en español dedicado a una chica llamada Kely.
-Debe sonar delicado, íntimo, poético y moderno.
-Evita clichés como "te amo", "cielo", "estrellas", "eres mi todo".
-Usa imágenes concretas y sentimientos suaves, no frases genéricas.
-Hazlo bonito de verdad.
-Fecha de inspiración: ${hoy}
-`.trim();
-
-  try {
-    const response = await fetch(
-      "https://router.huggingface.co/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${HUGGINGFACE_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: "HuggingFaceH4/zephyr-7b-beta",
-          messages: [
-            {
-              role: "user",
-              content: prompt
-            }
-          ],
-          max_tokens: 180,
-          temperature: 1.1
-        })
-      }
-    );
-
-    const data = await response.json();
-
-    const texto =
-      data?.choices?.[0]?.message?.content ||
-      "Hoy la IA se puso tímida y no quiso escribir. Intenta otra vez.";
-
-    poemaEl.textContent = texto.trim();
-  } catch (error) {
-    poemaEl.textContent =
-      "No pude generar el poema. Revisa tu token o la conexión.";
-    console.error(error);
-  }
+  document.getElementById("contador").textContent =
+    `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
 }
 
-generarPoema();
+actualizarContador();
+setInterval(actualizarContador, 1000);
+
+document.getElementById("poema").textContent =
+  "Aquí irá el poema del día, escrito por IA, pero primero voy a dejar la página bonita y funcionando.";
