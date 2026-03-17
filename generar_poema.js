@@ -13,7 +13,7 @@ async function generarPoema() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          inputs: "<|system|>Eres un escritor romántico experto.<|user|>Escribe un poema corto en español, íntimo, profundo y bonito para una novia especial.<|assistant|>",
+          inputs: "<|system|>Eres un poeta romántico, profundo, íntimo y único.<|user|>Escribe un poema corto para mi novia Kely, que sea emocional, bonito y original.<|assistant|>",
           parameters: {
             max_new_tokens: 120,
             temperature: 0.9
@@ -22,23 +22,25 @@ async function generarPoema() {
       }
     );
 
-    // 🔥 LEEMOS COMO TEXTO (NO JSON DIRECTO)
     const text = await response.text();
 
-    let poema = "Hoy pensé en ti, aunque la IA se quedó en silencio.";
+    console.log("Respuesta IA:", text); // 👀 DEBUG
+
+    let poema = "Hoy pensé en ti, y aunque el mundo haga ruido, tú siempre eres mi calma.";
 
     try {
       const data = JSON.parse(text);
 
-      if (Array.isArray(data) && data[0]?.generated_text) {
-        poema = data[0].generated_text.trim();
+      if (Array.isArray(data)) {
+        poema = data[0]?.generated_text || poema;
+      } else if (data.generated_text) {
+        poema = data.generated_text;
       }
 
     } catch (e) {
-      console.log("Respuesta no JSON, usando fallback");
+      console.log("No vino JSON limpio, usando fallback");
     }
 
-    // 💾 GUARDAR SIEMPRE
     fs.writeFileSync(
       "poema.json",
       JSON.stringify({ poema }, null, 2)
@@ -53,7 +55,7 @@ async function generarPoema() {
     fs.writeFileSync(
       "poema.json",
       JSON.stringify({
-        poema: "Hoy la IA falló, pero yo no dejo de pensar en ti."
+        poema: "Hoy la IA falló… pero yo no dejo de pensar en ti."
       }, null, 2)
     );
 
