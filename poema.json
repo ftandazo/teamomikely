@@ -1,3 +1,12 @@
 {
   "poema": "Cargando poema..."
 }
+
+fetch("poema.json")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("poema").innerText = data.poema;
+  })
+  .catch(() => {
+    document.getElementById("poema").innerText = "No se pudo cargar el poema.";
+  });
