@@ -67,9 +67,11 @@ pointer-events:none;
 position:absolute;
 width:6px;
 height:6px;
-background:white;
+background:#5aa3ff;
 border-radius:50%;
+box-shadow:0 0 8px #5aa3ff;
 animation: subir 20s linear infinite;
+opacity:0.8;
 }
 
 .stars span:nth-child(1){left:10%;}
