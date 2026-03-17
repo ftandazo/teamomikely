@@ -5,7 +5,7 @@ async function generarPoema() {
 try {
 
 const response = await fetch(
-"https://router.huggingface.co/hf-inference/models/gpt2",
+"https://router.huggingface.co/hf-inference/models/HuggingFaceH4/zephyr-7b-beta",,
 {
 method: "POST",
 headers: {
@@ -13,7 +13,7 @@ headers: {
 "Content-Type": "application/json"
 },
 body: JSON.stringify({
-inputs: "Escribe un poema romántico corto en español, bonito, íntimo y profundo para una novia especial:",
+inputs: "inputs: "<|system|>Eres un escritor romántico experto.<|user|>Escribe un poema corto en español, íntimo, profundo y bonito para una novia especial.<|assistant|>",:",
 parameters: {
 max_new_tokens: 100,
 temperature: 0.9
