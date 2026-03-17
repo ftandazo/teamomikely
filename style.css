@@ -1,3 +1,5 @@
+/* RESET */
+
 body{
 margin:0;
 background:transparent;
@@ -6,12 +8,15 @@ justify-content:center;
 align-items:center;
 padding:40px 0;
 font-family:Georgia, serif;
+overflow:hidden;
 }
 
 /* CONTENIDO */
 
 .box{
 text-align:center;
+position:relative;
+z-index:2;
 }
 
 .texto{
@@ -39,7 +44,7 @@ animation: aparecer 2.5s forwards;
 animation-delay:1.2s;
 }
 
-/* ANIMACIONES */
+/* ANIMACIÓN TEXTO */
 
 @keyframes aparecer{
 from{
@@ -52,7 +57,7 @@ transform:translateY(0);
 }
 }
 
-/* ⭐ ESTRELLAS */
+/* ⭐ ESTRELLAS PIXEL */
 
 .stars{
 position:fixed;
@@ -61,49 +66,91 @@ left:0;
 width:100%;
 height:100%;
 pointer-events:none;
+z-index:1;
 }
+
+/* base estrella pixel */
 
 .stars span{
 position:absolute;
-width:14px;
-height:14px;
+width:4px;
+height:4px;
 background:white;
 
-/* forma estrella */
-clip-path: polygon(
-50% 0%,
-61% 35%,
-98% 35%,
-68% 57%,
-79% 91%,
-50% 70%,
-21% 91%,
-32% 57%,
-2% 35%,
-39% 35%
-);
-
+/* efecto pixel glow */
 box-shadow:
-0 0 6px white,
-0 0 12px #5aa3ff,
-0 0 20px #5aa3ff;
+0 0 2px white,
+0 0 4px white,
+0 0 8px #5aa3ff,
+0 0 12px #5aa3ff;
 
 opacity:0.9;
-animation: subir 18s linear infinite, brillar 2s ease-in-out infinite;
+
+/* animaciones */
+animation: subir linear infinite, parpadear 1.5s ease-in-out infinite;
 }
 
-@keyframes brillar{
-0%{opacity:0.5; transform:scale(0.8);}
-50%{opacity:1; transform:scale(1.2);}
-100%{opacity:0.5; transform:scale(0.8);}
+/* VARIACIÓN DE TAMAÑOS Y VELOCIDADES */
+
+.stars span:nth-child(1){
+left:10%;
+width:3px;
+height:3px;
+animation-duration:18s;
 }
-.stars span:nth-child(1){left:10%;}
-.stars span:nth-child(2){left:30%;}
-.stars span:nth-child(3){left:50%;}
-.stars span:nth-child(4){left:70%;}
-.stars span:nth-child(5){left:90%;}
+
+.stars span:nth-child(2){
+left:25%;
+width:5px;
+height:5px;
+animation-duration:22s;
+}
+
+.stars span:nth-child(3){
+left:40%;
+width:4px;
+height:4px;
+animation-duration:16s;
+}
+
+.stars span:nth-child(4){
+left:60%;
+width:6px;
+height:6px;
+animation-duration:25s;
+}
+
+.stars span:nth-child(5){
+left:80%;
+width:3px;
+height:3px;
+animation-duration:20s;
+}
+
+/* MOVIMIENTO HACIA ARRIBA */
 
 @keyframes subir{
-from{transform:translateY(100vh);}
-to{transform:translateY(-10vh);}
+from{
+transform:translateY(100vh);
+}
+to{
+transform:translateY(-10vh);
+}
+}
+
+/* PARPADEO PIXEL */
+
+@keyframes parpadear{
+0%{
+opacity:0.3;
+transform:scale(0.8);
+}
+50%{
+opacity:1;
+transform:scale(1.4);
+}
+100%{
+opacity:0.3;
+transform:scale(0.8);
+}
 }
