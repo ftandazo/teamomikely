@@ -73,8 +73,7 @@ height:40px;
 
 /* patrón de puntitos */
 background:
-radial-gradient(circle, white 1.5px, transparent 1.5px);
-background-size:6px 6px;
+radial-gradient(circle, #1a1a1a 1.5px, transparent 1.5px);
 
 /* forma estrella */
 clip-path: polygon(
@@ -92,9 +91,8 @@ clip-path: polygon(
 
 /* glow */
 filter:
-drop-shadow(0 0 4px white)
-drop-shadow(0 0 10px white)
-drop-shadow(0 0 20px white);
+drop-shadow(0 0 2px rgba(0,0,0,0.3))
+drop-shadow(0 0 6px rgba(0,0,0,0.2));
 
 /* animaciones */
 animation:
