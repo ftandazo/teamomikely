@@ -1,28 +1,8 @@
-name: Poema diario
-
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 12 * * *"
-
-jobs:
-  generar-poema:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - run: node generar_poema.js
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-
-      - run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions@github.com"
-          git add poema.json
-          git commit -m "Actualizar poema diario" || echo "Sin cambios"
-          git push
+- name: Guardar cambios
+  run: |
+    git config --global user.name "github-actions[bot]"
+    git config --global user.email "github-actions@github.com"
+    git add poema.json
+    git commit -m "Actualizar poema diario" || echo "Sin cambios"
+    git push
+    
