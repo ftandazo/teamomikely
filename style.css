@@ -49,7 +49,7 @@ from{opacity:0; transform:translateY(40px);}
 to{opacity:1; transform:translateY(0);}
 }
 
-/* ⭐ ESTRELLAS PIXEL (NEGRAS, ESTILO IMAGEN) */
+/* ⭐ CONTENEDOR */
 
 .stars{
 position:fixed;
@@ -59,73 +59,49 @@ width:100%;
 height:100%;
 pointer-events:none;
 z-index:1;
+overflow:hidden;
 }
 
-/* estrella tipo pixel cruz + glow suave */
+/* ⭐ ESTRELLA LED (GRID REAL) */
 
 .stars span{
 position:absolute;
-width:2px;
-height:2px;
-background:black;
+width:40px;
+height:40px;
 
-/* forma pixel (cruz) */
-box-shadow:
-0 -4px black,
-0 -2px black,
--4px 0 black,
--2px 0 black,
-2px 0 black,
-4px 0 black,
-0 2px black,
-0 4px black,
+/* grid de puntitos */
+background:
+radial-gradient(circle, white 1.5px, transparent 1.5px);
+background-size:6px 6px;
 
-/* glow suave tipo imagen */
-0 0 4px rgba(0,0,0,0.3),
-0 0 8px rgba(0,0,0,0.2);
+/* forma estrella */
+clip-path: polygon(
+50% 0%,
+61% 35%,
+98% 35%,
+68% 57%,
+79% 91%,
+50% 70%,
+21% 91%,
+32% 57%,
+2% 35%,
+39% 35%
+);
 
-/* animaciones suaves */
-animation: subir linear infinite, flotar 4s ease-in-out infinite;
-opacity:0.7;
+/* brillo LED */
+filter:
+drop-shadow(0 0 4px white)
+drop-shadow(0 0 10px white)
+drop-shadow(0 0 20px white);
+
+/* animaciones */
+animation:
+subir linear infinite,
+flotar 6s ease-in-out infinite,
+parpadear 2s ease-in-out infinite;
+
+opacity:0.9;
 }
-
-/* posiciones + tamaños + velocidades (más natural) */
-
-.stars span:nth-child(1){
-left:10%;
-top:90%;
-animation-duration:18s;
-transform:scale(0.8);
-}
-
-.stars span:nth-child(2){
-left:30%;
-top:95%;
-animation-duration:22s;
-transform:scale(1.2);
-}
-
-.stars span:nth-child(3){
-left:50%;
-top:92%;
-animation-duration:16s;
-transform:scale(1);
-}
-
-.stars span:nth-child(4){
-left:70%;
-top:97%;
-animation-duration:25s;
-transform:scale(1.4);
-}
-
-.stars span:nth-child(5){
-left:85%;
-top:93%;
-animation-duration:20s;
-transform:scale(0.7);
-}
-
 /* movimiento vertical (suave) */
 
 @keyframes subir{
