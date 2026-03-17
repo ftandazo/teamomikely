@@ -22,7 +22,20 @@ temperature: 0.9
 }
 );
 
-const data = await response.json();
+let poema = "Hoy pensé en ti, aunque la IA se quedó en silencio.";
+
+const text = await response.text();
+
+try {
+  const data = JSON.parse(text);
+
+  if (Array.isArray(data) && data[0]?.generated_text) {
+    poema = data[0].generated_text.trim();
+  }
+
+} catch (e) {
+  console.log("Respuesta no JSON, usando fallback");
+}
 
 let poema = "Hoy pensé en ti, aunque la IA se quedó sin palabras.";
 
