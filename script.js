@@ -20,3 +20,20 @@ segundos + "s";
 
 setInterval(actualizarContador,1000);
 actualizarContador();
+
+/* TEXTO QUE SE ESCRIBE SOLO */
+
+const texto = "Te amo Kely :3";
+let i = 0;
+
+function escribir(){
+
+if(i < texto.length){
+document.getElementById("typing").innerHTML += texto.charAt(i);
+i++;
+setTimeout(escribir, 80); // velocidad (más bajo = más rápido)
+}
+
+}
+
+escribir();
