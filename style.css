@@ -65,15 +65,38 @@ pointer-events:none;
 
 .stars span{
 position:absolute;
-width:6px;
-height:6px;
-background:#5aa3ff;
-border-radius:50%;
-box-shadow:0 0 8px #5aa3ff;
-animation: subir 20s linear infinite;
-opacity:0.8;
+width:14px;
+height:14px;
+background:white;
+
+/* forma estrella */
+clip-path: polygon(
+50% 0%,
+61% 35%,
+98% 35%,
+68% 57%,
+79% 91%,
+50% 70%,
+21% 91%,
+32% 57%,
+2% 35%,
+39% 35%
+);
+
+box-shadow:
+0 0 6px white,
+0 0 12px #5aa3ff,
+0 0 20px #5aa3ff;
+
+opacity:0.9;
+animation: subir 18s linear infinite, brillar 2s ease-in-out infinite;
 }
 
+@keyframes brillar{
+0%{opacity:0.5; transform:scale(0.8);}
+50%{opacity:1; transform:scale(1.2);}
+100%{opacity:0.5; transform:scale(0.8);}
+}
 .stars span:nth-child(1){left:10%;}
 .stars span:nth-child(2){left:30%;}
 .stars span:nth-child(3){left:50%;}
