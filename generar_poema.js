@@ -29,12 +29,16 @@ async function generarPoema() {
     let poema = "Hoy pensé en ti, y aunque el mundo haga ruido, tú siempre eres mi calma.";
 
     try {
-      const data = JSON.parse(text);
-
-      if (Array.isArray(data)) {
-        poema = data[0]?.generated_text || poema;
-      } else if (data.generated_text) {
-        poema = data.generated_text;
+      if (text.includes("generated_text")) {
+  try {
+    const data = JSON.parse(text);
+    poema = data[0]?.generated_text || poema;
+  } catch {}
+} else {
+  // 🔥 si no es JSON, intenta usar el texto directo
+  if (text.length > 50) {
+    poema = text;
+  }
       }
 
     } catch (e) {
