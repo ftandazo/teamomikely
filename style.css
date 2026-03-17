@@ -44,36 +44,56 @@ animation: aparecer 2.5s forwards;
 animation-delay:1.2s;
 }
 
-/* ANIMACIÓN TEXTO */
-
 @keyframes aparecer{
 from{opacity:0; transform:translateY(40px);}
 to{opacity:1; transform:translateY(0);}
 }
 
-/* ⭐ CONTENEDOR ESTRELLAS */
+/* ⭐ FONDO ESTRELLAS (PUNTITOS LED) */
 
 .stars{
 position:fixed;
 top:0;
 left:0;
 width:100%;
-height:100%;
+height:200%;
 pointer-events:none;
 z-index:1;
-overflow:hidden;
+
+/* patrón pixel */
+background:
+radial-gradient(circle, rgba(0,0,0,0.8) 1px, transparent 1px),
+radial-gradient(circle, rgba(0,0,0,0.5) 1px, transparent 1px),
+radial-gradient(circle, rgba(0,0,0,0.3) 1px, transparent 1px);
+
+background-size:
+6px 6px,
+10px 10px,
+14px 14px;
+
+background-position:
+0 0,
+20px 30px,
+40px 60px;
+
+animation: moverFondo 40s linear infinite;
 }
 
-/* ⭐ ESTRELLAS PIXEL LED */
+/* ⭐ ESTRELLAS GRANDES (TIPO IMAGEN) */
 
-.stars span{
+.stars::before,
+.stars::after{
+content:"";
 position:absolute;
-width:40px;
-height:40px;
+width:100%;
+height:200%;
+pointer-events:none;
 
-/* patrón de puntitos */
+/* estrella hecha de puntitos */
 background:
-radial-gradient(circle, #1a1a1a 1.5px, transparent 1.5px);
+radial-gradient(circle, black 2px, transparent 2px);
+
+background-size:8px 8px;
 
 /* forma estrella */
 clip-path: polygon(
@@ -89,76 +109,49 @@ clip-path: polygon(
 39% 35%
 );
 
-/* glow */
+/* glow suave */
 filter:
-drop-shadow(0 0 2px rgba(0,0,0,0.3))
-drop-shadow(0 0 6px rgba(0,0,0,0.2));
+drop-shadow(0 0 4px rgba(0,0,0,0.3))
+drop-shadow(0 0 8px rgba(0,0,0,0.2));
 
-/* animaciones */
-animation:
-subir linear infinite,
-flotar 6s ease-in-out infinite,
-parpadear 2s ease-in-out infinite;
-
-opacity:0.9;
+opacity:0.6;
 }
 
-/* VARIACIÓN (para que no se vean iguales) */
+/* posiciones distintas */
 
-.stars span:nth-child(1){
+.stars::before{
+top:60%;
 left:10%;
-width:30px;
-height:30px;
-animation-duration:18s;
+width:120px;
+height:120px;
+animation: flotar1 18s ease-in-out infinite;
 }
 
-.stars span:nth-child(2){
-left:25%;
-width:40px;
-height:40px;
-animation-duration:22s;
-}
-
-.stars span:nth-child(3){
-left:50%;
-width:35px;
-height:35px;
-animation-duration:16s;
-}
-
-.stars span:nth-child(4){
+.stars::after{
+top:80%;
 left:70%;
-width:50px;
-height:50px;
-animation-duration:25s;
+width:160px;
+height:160px;
+animation: flotar2 22s ease-in-out infinite;
 }
 
-.stars span:nth-child(5){
-left:85%;
-width:25px;
-height:25px;
-animation-duration:20s;
+/* MOVIMIENTO FONDO */
+
+@keyframes moverFondo{
+from{transform:translateY(0);}
+to{transform:translateY(-50%);}
 }
 
-/* MOVIMIENTO VERTICAL */
+/* MOVIMIENTO ESTRELLAS GRANDES */
 
-@keyframes subir{
-from{ transform:translateY(100vh); }
-to{ transform:translateY(-120vh); }
+@keyframes flotar1{
+0%{transform:translateY(0) translateX(0);}
+50%{transform:translateY(-200px) translateX(40px);}
+100%{transform:translateY(-400px) translateX(0);}
 }
 
-/* MOVIMIENTO LATERAL SUAVE */
-
-@keyframes flotar{
-0%{ transform:translateX(0); }
-50%{ transform:translateX(20px); }
-100%{ transform:translateX(0); }
-}
-
-/* PARPADEO */
-
-@keyframes parpadear{
-0%{ opacity:0.5; }
-50%{ opacity:1; }
-100%{ opacity:0.5; }
+@keyframes flotar2{
+0%{transform:translateY(0) translateX(0);}
+50%{transform:translateY(-250px) translateX(-40px);}
+100%{transform:translateY(-500px) translateX(0);}
 }
