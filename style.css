@@ -1,8 +1,8 @@
-/* RESET */
+/* BASE */
 
 body{
 margin:0;
-background:#060b14;
+background:transparent;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -44,20 +44,12 @@ animation: aparecer 2.5s forwards;
 animation-delay:1.2s;
 }
 
-/* ANIMACIÓN TEXTO */
-
 @keyframes aparecer{
-from{
-opacity:0;
-transform:translateY(40px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+from{opacity:0; transform:translateY(40px);}
+to{opacity:1; transform:translateY(0);}
 }
 
-/* ⭐ ESTRELLAS PIXEL */
+/* ⭐ ESTRELLAS PIXEL (NEGRAS, ESTILO IMAGEN) */
 
 .stars{
 position:fixed;
@@ -69,88 +61,82 @@ pointer-events:none;
 z-index:1;
 }
 
-/* base estrella pixel */
+/* estrella tipo pixel cruz + glow suave */
 
 .stars span{
 position:absolute;
-width:4px;
-height:4px;
-background:white;
+width:2px;
+height:2px;
+background:black;
 
-/* efecto pixel glow */
+/* forma pixel (cruz) */
 box-shadow:
-0 0 2px white,
-0 0 4px white,
-0 0 8px #5aa3ff,
-0 0 12px #5aa3ff;
+0 -4px black,
+0 -2px black,
+-4px 0 black,
+-2px 0 black,
+2px 0 black,
+4px 0 black,
+0 2px black,
+0 4px black,
 
-opacity:0.9;
+/* glow suave tipo imagen */
+0 0 4px rgba(0,0,0,0.3),
+0 0 8px rgba(0,0,0,0.2);
 
-/* animaciones */
-animation: subir linear infinite, parpadear 1.5s ease-in-out infinite;
+/* animaciones suaves */
+animation: subir linear infinite, flotar 4s ease-in-out infinite;
+opacity:0.7;
 }
 
-/* VARIACIÓN DE TAMAÑOS Y VELOCIDADES */
+/* posiciones + tamaños + velocidades (más natural) */
 
 .stars span:nth-child(1){
 left:10%;
-width:3px;
-height:3px;
+top:90%;
 animation-duration:18s;
+transform:scale(0.8);
 }
 
 .stars span:nth-child(2){
-left:25%;
-width:5px;
-height:5px;
+left:30%;
+top:95%;
 animation-duration:22s;
+transform:scale(1.2);
 }
 
 .stars span:nth-child(3){
-left:40%;
-width:4px;
-height:4px;
+left:50%;
+top:92%;
 animation-duration:16s;
+transform:scale(1);
 }
 
 .stars span:nth-child(4){
-left:60%;
-width:6px;
-height:6px;
+left:70%;
+top:97%;
 animation-duration:25s;
+transform:scale(1.4);
 }
 
 .stars span:nth-child(5){
-left:80%;
-width:3px;
-height:3px;
+left:85%;
+top:93%;
 animation-duration:20s;
+transform:scale(0.7);
 }
 
-/* MOVIMIENTO HACIA ARRIBA */
+/* movimiento vertical (suave) */
 
 @keyframes subir{
-from{
-transform:translateY(100vh);
-}
-to{
-transform:translateY(-10vh);
-}
+from{transform:translateY(0);}
+to{transform:translateY(-110vh);}
 }
 
-/* PARPADEO PIXEL */
+/* flotación lateral + respiración (suavidad) */
 
-@keyframes parpadear{
-0%{
-opacity:0.3;
-transform:scale(0.8);
-}
-50%{
-opacity:1;
-transform:scale(1.4);
-}
-100%{
-opacity:0.3;
-transform:scale(0.8);
-}
+@keyframes flotar{
+0%{transform:translateX(0) scale(1);}
+50%{transform:translateX(10px) scale(1.2);}
+100%{transform:translateX(0) scale(1);}
 }
