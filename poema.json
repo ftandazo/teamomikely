@@ -1,7 +1,6 @@
 {
   "poema": "Cargando poema..."
 }
-
 fetch("poema.json")
   .then(res => res.json())
   .then(data => {
