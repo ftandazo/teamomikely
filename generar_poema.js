@@ -1,59 +1,74 @@
 import fs from "fs";
 
-async function generarPoema(){
+async function generarPoema() {
 
-try{
+  try {
 
-const response = await fetch(
-""https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + process.env.GEMINI_API_KEY,
-{
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-contents: [{
-parts: [{
-text: `
-Escribe un poema romántico en español.
+    const response = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + process.env.GEMINI_API_KEY,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: "user",
+              parts: [
+                {
+                  text: `Escribe un poema romántico en español.
 
-Debe cumplir esto:
+Debe cumplir:
 - Entre 6 y 10 líneas
 - Muy bonito y profundo
-- Que suene íntimo y real, no genérico
-- Como si estuviera dedicado a una novia muy especial
+- Íntimo y sincero
+- No genérico
+- Como si fuera para una novia muy especial
 - Usa metáforas suaves
-- Que transmita amor sincero
+- Que transmita amor real`
+                }
+              ]
+            }
+          ]
+        })
+      }
+    );
 
-No lo hagas corto.
-Hazlo especial.
-`
+    const data = await response.json();
 
-const data = await response.json();
+    console.log("RESPUESTA GEMINI:", JSON.stringify(data, null, 2));
 
-console.log("RESPUESTA:", JSON.stringify(data, null, 2)); // 👈 clave para debug
+    let poema = "No se pudo generar el poema 💔";
 
-let poema = "estas hermosa y si no te e visto hoy, igual se que estas hermosa :3";
+    if (
+      data.candidates &&
+      data.candidates.length > 0 &&
+      data.candidates[0].content &&
+      data.candidates[0].content.parts
+    ) {
+      const parts = data.candidates[0].content.parts;
 
-if (data.candidates && data.candidates.length > 0) {
-  const parts = data.candidates[0].content.parts;
+      if (parts.length > 0) {
+        poema = parts.map(p => p.text).join("\n");
+      }
+    }
 
-  if (parts && parts.length > 0) {
-    poema = parts.map(p => p.text).join("\n");
+    fs.writeFileSync("poema.json", JSON.stringify({ poema }, null, 2));
+
+  } catch (e) {
+
+    console.log("ERROR:", e);
+
+    fs.writeFileSync(
+      "poema.json",
+      JSON.stringify(
+        { poema: "Error generando poema 😢 pero igual te amo :3" },
+        null,
+        2
+      )
+    );
   }
-}
-fs.writeFileSync("poema.json", JSON.stringify({ poema }, null, 2));
-
-}catch(e){
-
-console.log("ERROR:", e);
-
-fs.writeFileSync("poema.json", JSON.stringify({
-poema: "xD, hubo un error, pero igual te amo :3 y mucho"
-}, null, 2));
-
-}
-
 }
 
 generarPoema();
