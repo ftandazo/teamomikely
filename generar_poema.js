@@ -5,7 +5,7 @@ async function generarPoema(){
 try{
 
 const response = await fetch(
-"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + process.env.GEMINI_API_KEY,
+""https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + process.env.GEMINI_API_KEY,
 {
 method: "POST",
 headers: {
@@ -33,7 +33,7 @@ const data = await response.json();
 
 console.log("RESPUESTA:", JSON.stringify(data, null, 2)); // 👈 clave para debug
 
-let poema = "Hoy te amo más que ayer 💙";
+let poema = "estas hermosa y si no te e visto hoy, igual se que estas hermosa :3";
 
 if (data.candidates && data.candidates.length > 0) {
   const parts = data.candidates[0].content.parts;
