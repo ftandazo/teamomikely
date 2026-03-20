@@ -35,16 +35,13 @@ console.log("RESPUESTA:", JSON.stringify(data, null, 2)); // 👈 clave para deb
 
 let poema = "Hoy te amo más que ayer 💙";
 
-if(
-data.candidates &&
-data.candidates[0] &&
-data.candidates[0].content &&
-data.candidates[0].content.parts &&
-data.candidates[0].content.parts[0]
-){
-poema = data.candidates[0].content.parts[0].text;
-}
+if (data.candidates && data.candidates.length > 0) {
+  const parts = data.candidates[0].content.parts;
 
+  if (parts && parts.length > 0) {
+    poema = parts.map(p => p.text).join("\n");
+  }
+}
 fs.writeFileSync("poema.json", JSON.stringify({ poema }, null, 2));
 
 }catch(e){
