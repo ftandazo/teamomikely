@@ -16,6 +16,7 @@ async function generarPoema() {
               parts: [
                 {
                   text: `Escribe un poema romántico en español, profundo, creativo y único, como si fuera escrito por un adolescente enamorado. No uses frases genéricas. Hazlo emocional y real.`
+                }
               ]
             }
           ]
@@ -27,9 +28,15 @@ async function generarPoema() {
 
     console.log("RESPUESTA:", JSON.stringify(data, null, 2));
 
-    let poema = "Hoy te amo incluso cuando la tecnología se rompe 💙";
+    let poema = "Hoy te amo incluso cuando todo falla 💙";
 
-    if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
+    if (
+      data.candidates &&
+      data.candidates.length > 0 &&
+      data.candidates[0].content &&
+      data.candidates[0].content.parts &&
+      data.candidates[0].content.parts.length > 0
+    ) {
       poema = data.candidates[0].content.parts[0].text;
     }
 
@@ -40,7 +47,7 @@ async function generarPoema() {
     console.log("ERROR:", error);
 
     fs.writeFileSync("poema.json", JSON.stringify({
-      poema: "Hubo un error… pero igual te amo más que ayer 💙"
+      poema: "Error… pero igual te amo :3 💙"
     }, null, 2));
 
   }
