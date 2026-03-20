@@ -15,7 +15,7 @@ async function generarPoema() {
             {
               parts: [
                 {
-                  text: "Escribe un poema romántico, bonito, único y emocional en español para una novia especial. Que suene real, no genérico."
+                  text: "text: "Escribe un poema romántico en español, profundo, creativo y único, como si fuera escrito por un adolescente enamorado. No uses frases genéricas. Hazlo emocional y real.""
                 }
               ]
             }
