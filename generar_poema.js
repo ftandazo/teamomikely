@@ -14,12 +14,20 @@ headers: {
 body: JSON.stringify({
 contents: [{
 parts: [{
-text: "Escribe un poema romántico corto en español, muy bonito, íntimo, profundo, dedicado a una novia especial."
-}]
-}]
-})
-}
-);
+text: `
+Escribe un poema romántico en español.
+
+Debe cumplir esto:
+- Entre 6 y 10 líneas
+- Muy bonito y profundo
+- Que suene íntimo y real, no genérico
+- Como si estuviera dedicado a una novia muy especial
+- Usa metáforas suaves
+- Que transmita amor sincero
+
+No lo hagas corto.
+Hazlo especial.
+`
 
 const data = await response.json();
 
