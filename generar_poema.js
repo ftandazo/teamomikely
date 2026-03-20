@@ -4,7 +4,7 @@ async function generarPoema() {
   try {
 
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent,
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + process.env.GEMINI_API_KEY,
       {
         method: "POST",
         headers: {
@@ -13,10 +13,9 @@ async function generarPoema() {
         body: JSON.stringify({
           contents: [
             {
-              role: "user",
               parts: [
                 {
-                  text: "Escribe un poema romántico en español, de 6 a 10 líneas, profundo y bonito, dedicado a una novia especial."
+                  text: "Escribe un poema romántico, bonito, único y emocional en español para una novia especial. Que suene real, no genérico."
                 }
               ]
             }
@@ -29,7 +28,7 @@ async function generarPoema() {
 
     console.log("RESPUESTA:", JSON.stringify(data, null, 2));
 
-    let poema = "Hoy te amo incluso cuando falla la IA 💙";
+    let poema = "Hoy te amo incluso cuando la tecnología se rompe 💙";
 
     if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
       poema = data.candidates[0].content.parts[0].text;
@@ -39,8 +38,10 @@ async function generarPoema() {
 
   } catch (error) {
 
+    console.log("ERROR:", error);
+
     fs.writeFileSync("poema.json", JSON.stringify({
-      poema: "Error… pero igual te amo :3 💙"
+      poema: "Hubo un error… pero igual te amo más que ayer 💙"
     }, null, 2));
 
   }
