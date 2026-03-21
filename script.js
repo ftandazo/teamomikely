@@ -55,6 +55,3 @@ fetch("poema.json?nocache=" + new Date().getTime())
       poema.textContent = "No se pudo cargar el poema 💔";
     }
   });
-#poema{
-  white-space: pre-line;
-}
