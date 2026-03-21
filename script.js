@@ -45,9 +45,24 @@ fetch("poema.json?nocache=" + new Date().getTime())
   .then(res => res.json())
   .then(data => {
     const poema = document.getElementById("poema");
-    if (poema && data.poema) {
+    if (!poema || !data.poema) return;
+
+    poema.innerHTML = "";
+
+    const lineas = data.poema.split("\n").filter(linea => linea.trim() !== "");
+
+    if (lineas.length === 0) {
       poema.textContent = data.poema;
+      return;
     }
+
+    lineas.forEach((linea, index) => {
+      const div = document.createElement("div");
+      div.className = "linea-poema";
+      div.textContent = linea;
+      div.style.animationDelay = `${index * 0.4}s`;
+      poema.appendChild(div);
+    });
   })
   .catch(() => {
     const poema = document.getElementById("poema");
