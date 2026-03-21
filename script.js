@@ -1,50 +1,57 @@
 const inicio = new Date("2026-03-01T00:00:00");
 
-function actualizarContador(){
+/* CONTADOR */
+function actualizarContador() {
+  const ahora = new Date();
+  const diff = ahora - inicio;
 
-const ahora = new Date();
-const diff = ahora - inicio;
+  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((diff / (1000 * 60)) % 60);
+  const segundos = Math.floor((diff / 1000) % 60);
 
-const dias = Math.floor(diff/(1000*60*60*24));
-const horas = Math.floor((diff/(1000*60*60))%24);
-const minutos = Math.floor((diff/(1000*60))%60);
-const segundos = Math.floor((diff/1000)%60);
-
-document.getElementById("contador").innerHTML =
-dias + " días " +
-horas + "h " +
-minutos + "m " +
-segundos + "s";
-
+  const contador = document.getElementById("contador");
+  if (contador) {
+    contador.textContent =
+      dias + " días " +
+      horas + "h " +
+      minutos + "m " +
+      segundos + "s";
+  }
 }
 
-setInterval(actualizarContador,1000);
+setInterval(actualizarContador, 1000);
 actualizarContador();
 
 /* TEXTO QUE SE ESCRIBE SOLO */
-
 const texto = "Te amo Kely :3";
 let i = 0;
 
-function escribir(){
+function escribir() {
+  const typing = document.getElementById("typing");
+  if (!typing) return;
 
-if(i < texto.length){
-document.getElementById("typing").innerHTML += texto.charAt(i);
-i++;
-setTimeout(escribir, 80); // velocidad (más bajo = más rápido)
-}
-
+  if (i < texto.length) {
+    typing.textContent += texto.charAt(i);
+    i++;
+    setTimeout(escribir, 80);
+  }
 }
 
 escribir();
 
+/* CARGAR POEMA */
 fetch("poema.json?nocache=" + new Date().getTime())
   .then(res => res.json())
   .then(data => {
-    if (data.poema) {
-      document.getElementById("poema").textContent = data.poema;
+    const poema = document.getElementById("poema");
+    if (poema && data.poema) {
+      poema.textContent = data.poema;
     }
   })
   .catch(() => {
-    document.getElementById("poema").textContent = "No se pudo cargar el poema 💔";
+    const poema = document.getElementById("poema");
+    if (poema) {
+      poema.textContent = "No se pudo cargar el poema 💔";
+    }
   });
