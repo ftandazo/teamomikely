@@ -151,3 +151,7 @@ to{transform:translateY(-50%);}
 50%{transform:translateY(-250px) translateX(-40px);}
 100%{transform:translateY(-500px) translateX(0);}
 }
+
+#poema{
+  white-space: pre-line;
+}
