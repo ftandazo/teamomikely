@@ -155,3 +155,60 @@ to{transform:translateY(-50%);}
 #poema{
   white-space: pre-line;
 }
+.poema-box{
+  max-width:760px;
+  margin:30px auto 0;
+  background:rgba(255,255,255,0.72);
+  border:1px solid rgba(46,95,130,0.14);
+  border-radius:24px;
+  padding:26px 22px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  backdrop-filter:blur(4px);
+}
+
+.poema-titulo{
+  margin:0 0 14px;
+  font-size:22px;
+  color:#2e5f82;
+}
+
+#poema{
+  color:#111;
+  margin:0;
+}
+
+.linea-poema{
+  opacity:0;
+  transform:translateY(10px);
+  animation: aparecerLinea 0.8s ease forwards;
+  font-size:22px;
+  line-height:1.7;
+  margin-bottom:8px;
+}
+
+@keyframes aparecerLinea{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@media (max-width:768px){
+  .poema-box{
+    padding:20px 16px;
+    border-radius:18px;
+  }
+
+  .poema-titulo{
+    font-size:18px;
+  }
+
+  .linea-poema{
+    font-size:18px;
+    line-height:1.6;
+  }
+}
