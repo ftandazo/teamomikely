@@ -170,11 +170,13 @@ to{transform:translateY(-50%);}
   margin:0 0 14px;
   font-size:22px;
   color:#2e5f82;
+  text-align:center;
 }
 
 #poema{
   color:#111;
   margin:0;
+  text-align:center;
 }
 
 .linea-poema{
