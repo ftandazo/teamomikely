@@ -214,3 +214,85 @@ to{transform:translateY(-50%);}
     line-height:1.6;
   }
 }
+.frase-fija{
+  max-width: 720px;
+  margin: 25px auto 0;
+  font-size: 22px;
+  line-height: 1.6;
+  color: #2e5f82;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.dudas-box,
+.recuerdos-box{
+  max-width: 760px;
+  margin: 28px auto 0;
+  background: rgba(255,255,255,0.58);
+  border: 1px solid rgba(46,95,130,0.12);
+  border-radius: 22px;
+  padding: 24px 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+
+.mini-titulo{
+  margin: 0 0 14px;
+  font-size: 24px;
+  color: #2e5f82;
+  text-align: center;
+}
+
+.dudas-lista,
+.recuerdos-lista{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dudas-lista li,
+.recuerdos-lista li{
+  font-size: 22px;
+  line-height: 1.7;
+  color: #111;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.mensaje-final{
+  max-width: 760px;
+  margin: 35px auto 80px;
+  text-align: center;
+  font-size: 20px;
+  color: #2e5f82;
+  opacity: 0.95;
+}
+
+@media (max-width: 768px){
+  .frase-fija{
+    font-size: 18px;
+    line-height: 1.5;
+    padding: 0 10px;
+  }
+
+  .dudas-box,
+  .recuerdos-box{
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .mini-titulo{
+    font-size: 20px;
+  }
+
+  .dudas-lista li,
+  .recuerdos-lista li{
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .mensaje-final{
+    font-size: 17px;
+    margin: 28px auto 60px;
+    padding: 0 10px;
+  }
+}
