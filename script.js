@@ -38,8 +38,13 @@ setTimeout(escribir, 80); // velocidad (más bajo = más rápido)
 
 escribir();
 
-fetch("poema.json")
+fetch("poema.json?nocache=" + new Date().getTime())
   .then(res => res.json())
   .then(data => {
-    document.getElementById("poema").textContent = data.poema;
+    if (data.poema) {
+      document.getElementById("poema").textContent = data.poema;
+    }
+  })
+  .catch(() => {
+    document.getElementById("poema").textContent = "No se pudo cargar el poema 💔";
   });
